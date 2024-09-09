@@ -7,7 +7,7 @@ import { MOCK_KEY } from '../../apis/utils/axios'
 
 const ApiExample = () => {
   const [mockValue, setMockValue] = useSessionStorage(MOCK_KEY)
-  const { data = {} } = useJsonPlaceholderUser(mockValue)
+  const { data = {} } = useJsonPlaceholderUser({ mockValue })
   const isChecked = isEmpty(mockValue) || mockValue === 'true'
 
   const onChange = async (e) => {
