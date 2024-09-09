@@ -27,10 +27,13 @@ const index = () => {
           <br />
           <p className='py-4 font-bold'>Links</p>
           <div className='mt-2 rounded-box bg-white p-2'>
-            <ul className="menu w-full rounded-md bg-base-200 p-0">
+            <ul className="menu w-full space-y-2 rounded-md p-0">
               {links.map((link) => {
                 return (
-                  <li key={link.url}>
+                  <li
+                    key={link.url}
+                    className='rounded-md bg-base-200'
+                  >
                     <Link to={link.url}>
                       {link.name}
                     </Link>
