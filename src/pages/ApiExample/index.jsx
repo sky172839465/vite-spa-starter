@@ -1,24 +1,27 @@
 import { useSessionStorage } from '@react-hooks-library/core'
 import { isEmpty } from 'lodash-es'
+import { sleep } from 'radash'
 
 import { useJsonPlaceholderUser } from '../../apis/fetchJsonPlaceholderUser'
 import { MOCK_KEY } from '../../apis/utils/axios'
 
 const ApiExample = () => {
-  const [mockValue, setMockValue] = useSessionStorage(MOCK_KEY, '1')
-  const { data = {} } = useJsonPlaceholderUser()
-  const isDefaultChecked = isEmpty(mockValue) || mockValue === 1
+  const [mockValue, setMockValue] = useSessionStorage(MOCK_KEY)
+  const { data = {} } = useJsonPlaceholderUser(mockValue)
+  const isChecked = isEmpty(mockValue) || mockValue === 'true'
 
-  const onChange = (e) => {
+  const onChange = async (e) => {
     const isChecked = e.target.checked
-    setMockValue(isChecked ? setMockValue('1') : setMockValue())
+    setMockValue(`${isChecked}`)
+    await sleep(200)
+    window.location.reload()
   }
 
   return (
     <>
       <div className="form-control">
         <label className="label cursor-pointer justify-start">
-          <input type="checkbox" defaultChecked={isDefaultChecked} className="checkbox" onChange={onChange} />
+          <input type="checkbox" checked={isChecked} className="checkbox" onChange={onChange} />
           <span className="label-text pl-2">Use mock api</span>
         </label>
       </div>
