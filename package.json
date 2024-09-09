@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:gh": "BASENAME=1 npm run build",
+    "build:gh": "BASENAME=1 npm run build && npm run build:404",
+    "build:404": "cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
