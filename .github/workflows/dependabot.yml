@@ -1,7 +1,5 @@
 name: dependabot
-on:
-  push:
-    branches: ["main"]
+on: pull_request
 
 permissions:
   contents: write

@@ -1,6 +1,7 @@
 # Vite SPA starter
 
 ### Feature
+
 - Vite
 - SPA mode, put router in `pages` folder
   - page nameing `index.jsx`
@@ -9,7 +10,8 @@
 - ESLint
 
 ### CI
-- dependabot on merge
+
+- dependabot on pr open
 - deploy ghp-ages on merge
   - create `GITHUB_TOKEN` with permission `project, repo, user, workflow`<br />
     https://github.com/settings/tokens
@@ -17,4 +19,5 @@
     https://github.com/sky172839465/vite-spa-starter/settings/pages
 
 ### Develop on stackblitz
+
 - https://stackblitz.com/~/github.com/sky172839465/vite-spa-starter
