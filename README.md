@@ -12,6 +12,8 @@
 ### CI
 
 - dependabot on pr open
+  - enable `Dependabot alerts` > `Dependabot alerts, Dependabot security updates, Grouped security updates, Dependabot on Actions runners`<br />
+    https://github.com/sky172839465/vite-spa-starter/security
 - deploy ghp-ages on merge
   - create `GITHUB_TOKEN` with permission `project, repo, user, workflow`<br />
     https://github.com/settings/tokens
