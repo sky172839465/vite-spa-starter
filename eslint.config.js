@@ -58,6 +58,22 @@ export default [
         { 'allowShortCircuit': true, 'allowTernary': true }
       ],
       'react/prop-types': 'off',
+      'react/jsx-max-props-per-line': ['warn', { 'when': 'multiline' }],
+      'react/jsx-first-prop-new-line': ['warn'],
+      'react/jsx-indent-props': [2, 2],
+      'react/jsx-wrap-multilines': ['error', {
+        'declaration': 'parens-new-line',
+        'assignment': 'parens-new-line',
+        'return': 'parens-new-line',
+        'arrow': 'parens-new-line',
+        'condition': 'parens-new-line',
+        'logical': 'parens-new-line',
+        'prop': 'parens-new-line'
+      }],
+      'react/jsx-tag-spacing': ['warn', {
+        'beforeClosing': 'never'
+      }],
+      'react/jsx-one-expression-per-line': 'warn',
       'tailwindcss/no-custom-classname': 'off'
     }
   },

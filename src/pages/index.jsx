@@ -23,9 +23,13 @@ const index = () => {
     >
       <div className='hero-content text-center'>
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Homepage</h1>
+          <h1 className="text-5xl font-bold">
+            Homepage
+          </h1>
           <br />
-          <p className='py-4 font-bold'>Links</p>
+          <p className='py-4 font-bold'>
+            Links
+          </p>
           <div className='mt-2 rounded-box bg-white p-2'>
             <ul className="menu w-full space-y-2 rounded-md p-0">
               {links.map((link) => {

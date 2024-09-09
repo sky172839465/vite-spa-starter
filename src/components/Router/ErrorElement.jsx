@@ -20,11 +20,19 @@ const ErrorElement = () => {
             />
             Oops!
           </h1>
-          <p className='py-3'>Sorry, an unexpected error has occurred.</p>
-          <p className='py-3'>{statusText || message}</p>
+          <p className='py-3'>
+            Sorry, an unexpected error has occurred.
+          </p>
+          <p className='py-3'>
+            {statusText || message}
+          </p>
           <div className='mt-4'>
             <Link to='../'>
-              <button type='button' className='btn btn-primary'>Back to home</button>
+              <button
+                type='button'
+                className='btn btn-primary'>
+                Back to home
+              </button>
             </Link>
           </div>
         </div>

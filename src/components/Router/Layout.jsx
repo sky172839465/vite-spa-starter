@@ -6,8 +6,14 @@ const Layout = () => {
   return (
     <>
       <div className="navbar bg-base-100">
-        <Link className="btn btn-ghost text-xl" to='/'>Home</Link>
-        <p className='px-2'>{pathname}</p>
+        <Link
+          className="btn btn-ghost text-xl"
+          to='/'>
+          Home
+        </Link>
+        <p className='px-2'>
+          {pathname}
+        </p>
       </div>
       <div className='h-[calc(100dvh-4rem)] w-full max-w-full p-2'>
         <Outlet />

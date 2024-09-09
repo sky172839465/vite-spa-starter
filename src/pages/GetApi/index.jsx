@@ -21,8 +21,14 @@ const ApiExample = () => {
     <>
       <div className="form-control">
         <label className="label cursor-pointer justify-start">
-          <input type="checkbox" checked={isChecked} className="checkbox" onChange={onChange} />
-          <span className="label-text pl-2">Use mock api</span>
+          <input
+            type="checkbox"
+            checked={isChecked}
+            className="checkbox"
+            onChange={onChange} />
+          <span className="label-text pl-2">
+            Use mock api
+          </span>
         </label>
       </div>
       <div className="mockup-code">
