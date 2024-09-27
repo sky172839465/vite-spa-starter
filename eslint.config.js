@@ -61,6 +61,8 @@ export default [
       'react/jsx-max-props-per-line': ['warn', { 'when': 'multiline' }],
       'react/jsx-first-prop-new-line': ['warn'],
       'react/jsx-indent-props': [2, 2],
+      'react/jsx-indent': ['error', 2],
+      'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
       'react/jsx-wrap-multilines': ['error', {
         'declaration': 'parens-new-line',
         'assignment': 'parens-new-line',
@@ -70,9 +72,7 @@ export default [
         'logical': 'parens-new-line',
         'prop': 'parens-new-line'
       }],
-      'react/jsx-tag-spacing': ['warn', {
-        'beforeClosing': 'never'
-      }],
+      'react/jsx-tag-spacing': ['error', { 'beforeSelfClosing': 'always' }],
       'react/jsx-one-expression-per-line': 'warn',
       'tailwindcss/no-custom-classname': 'off'
     }

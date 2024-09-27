@@ -25,7 +25,8 @@ const ApiExample = () => {
             type="checkbox"
             checked={isChecked}
             className="checkbox"
-            onChange={onChange} />
+            onChange={onChange}
+          />
           <span className="label-text pl-2">
             Use mock api
           </span>

@@ -8,7 +8,8 @@ const Layout = () => {
       <div className="navbar bg-base-100">
         <Link
           className="btn btn-ghost text-xl"
-          to='/'>
+          to='/'
+        >
           Home
         </Link>
         <p className='px-2'>

@@ -30,7 +30,8 @@ const ErrorElement = () => {
             <Link to='../'>
               <button
                 type='button'
-                className='btn btn-primary'>
+                className='btn btn-primary'
+              >
                 Back to home
               </button>
             </Link>
