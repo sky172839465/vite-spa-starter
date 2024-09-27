@@ -4,17 +4,18 @@ import getCustomAxios from './utils/axios'
 
 export const endpoint = 'https://jsonplaceholder.typicode.com/posts'
 
-export const fetcher = () => async ({ arg = {} }) => {
+export const fetcher = () => async (key, { arg = {} }) => {
   const { title, content, userId } = arg
-  const body = JSON.stringify({
+  const data = {
     title,
     content,
     userId
-  })
+  }
   const axios = await getCustomAxios()
-  return axios(endpoint, {
+  return axios({
+    url: endpoint,
     method: 'POST',
-    body
+    data
   })
 }
 

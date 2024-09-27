@@ -1,10 +1,11 @@
-const mock = (arg) => {
-  console.log(arg)
+import { random } from 'lodash-es'
+
+const mock = (config) => {
+  const { data } = config
+  const body = JSON.parse(data)
   return {
-    id: 101,
-    title: 'foo',
-    body: 'bar',
-    userId: 1
+    id: random(100, 999),
+    ...body
   }
 }
 
