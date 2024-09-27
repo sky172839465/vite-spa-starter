@@ -5,10 +5,11 @@ const Layout = () => {
   const { pathname } = useLocation()
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className='navbar bg-base-100'>
         <Link
-          className="btn btn-ghost text-xl"
-          to='/'>
+          className='btn btn-ghost text-xl'
+          to='/'
+        >
           Home
         </Link>
         <p className='px-2'>

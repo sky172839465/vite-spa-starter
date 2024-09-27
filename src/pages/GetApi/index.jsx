@@ -5,7 +5,7 @@ import { sleep } from 'radash'
 import { useJsonPlaceholderUser } from '../../apis/fetchJsonPlaceholderUser'
 import { MOCK_KEY } from '../../apis/utils/axios'
 
-const ApiExample = () => {
+const GetApi = () => {
   const [mockValue, setMockValue] = useSessionStorage(MOCK_KEY)
   const { data = {} } = useJsonPlaceholderUser({ mockValue })
   const isChecked = isEmpty(mockValue) || mockValue === 'true'
@@ -19,19 +19,20 @@ const ApiExample = () => {
 
   return (
     <>
-      <div className="form-control">
-        <label className="label cursor-pointer justify-start">
+      <div className='form-control'>
+        <label className='label cursor-pointer justify-start'>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={isChecked}
-            className="checkbox"
-            onChange={onChange} />
-          <span className="label-text pl-2">
+            className='checkbox'
+            onChange={onChange}
+          />
+          <span className='label-text pl-2'>
             Use mock api
           </span>
         </label>
       </div>
-      <div className="mockup-code">
+      <div className='mockup-code'>
         <div className='max-h-[50dvh] overflow-y-scroll'>
           {JSON.stringify(data, null, 2).split('\n').map((row, index) => {
             return (
@@ -48,4 +49,4 @@ const ApiExample = () => {
   )
 }
 
-export default ApiExample
+export default GetApi
