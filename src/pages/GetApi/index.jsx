@@ -5,7 +5,7 @@ import { sleep } from 'radash'
 import { useJsonPlaceholderUser } from '../../apis/fetchJsonPlaceholderUser'
 import { MOCK_KEY } from '../../apis/utils/axios'
 
-const ApiExample = () => {
+const GetApi = () => {
   const [mockValue, setMockValue] = useSessionStorage(MOCK_KEY)
   const { data = {} } = useJsonPlaceholderUser({ mockValue })
   const isChecked = isEmpty(mockValue) || mockValue === 'true'
@@ -49,4 +49,4 @@ const ApiExample = () => {
   )
 }
 
-export default ApiExample
+export default GetApi
