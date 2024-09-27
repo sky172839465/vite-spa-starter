@@ -19,20 +19,20 @@ const GetApi = () => {
 
   return (
     <>
-      <div className="form-control">
-        <label className="label cursor-pointer justify-start">
+      <div className='form-control'>
+        <label className='label cursor-pointer justify-start'>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={isChecked}
-            className="checkbox"
+            className='checkbox'
             onChange={onChange}
           />
-          <span className="label-text pl-2">
+          <span className='label-text pl-2'>
             Use mock api
           </span>
         </label>
       </div>
-      <div className="mockup-code">
+      <div className='mockup-code'>
         <div className='max-h-[50dvh] overflow-y-scroll'>
           {JSON.stringify(data, null, 2).split('\n').map((row, index) => {
             return (

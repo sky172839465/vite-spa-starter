@@ -73,6 +73,7 @@ export default [
         'prop': 'parens-new-line'
       }],
       'react/jsx-tag-spacing': ['error', { 'beforeSelfClosing': 'always' }],
+      'jsx-quotes': ['error', 'prefer-single'],
       'react/jsx-one-expression-per-line': 'warn',
       'tailwindcss/no-custom-classname': 'off'
     }

@@ -1,10 +1,10 @@
 import { useSessionStorage } from '@react-hooks-library/core'
 import { isEmpty } from 'lodash-es'
 import { sleep } from 'radash'
+import { FormProvider, useForm } from 'react-hook-form'
 
 import { useCreateJsonPlaceholderUser } from '../../apis/createJsonPlaceholderPost'
 import { MOCK_KEY } from '../../apis/utils/axios'
-import { FormProvider, useForm } from 'react-hook-form'
 
 const defaultValues = {
   title: 'foo',
@@ -29,43 +29,51 @@ const PostPutApi = () => {
 
   return (
     <div className='space-y-2'>
-      <div className="form-control">
-        <label className="label cursor-pointer justify-start">
+      <div className='form-control'>
+        <label className='label cursor-pointer justify-start'>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={isChecked}
-            className="checkbox"
+            className='checkbox'
             onChange={onChange}
           />
-          <span className="label-text pl-2">
+          <span className='label-text pl-2'>
             Use mock api
           </span>
         </label>
       </div>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-2'>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Title</span>
+          <label className='form-control w-full max-w-xs'>
+            <div className='label'>
+              <span className='label-text'>
+                Title
+              </span>
             </div>
-            <input {...methods.register('title')} className="input input-bordered w-full max-w-xs" />
+            <input {...methods.register('title')} className='input input-bordered w-full max-w-xs' />
           </label>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Content</span>
+          <label className='form-control w-full max-w-xs'>
+            <div className='label'>
+              <span className='label-text'>
+                Content
+              </span>
             </div>
-            <input {...methods.register('content')} className="input input-bordered w-full max-w-xs" />
+            <input {...methods.register('content')} className='input input-bordered w-full max-w-xs' />
           </label>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">UserId</span>
+          <label className='form-control w-full max-w-xs'>
+            <div className='label'>
+              <span className='label-text'>
+                UserId
+              </span>
             </div>
-            <input {...methods.register('userId')} className="input input-bordered w-full max-w-xs" />
+            <input {...methods.register('userId')} className='input input-bordered w-full max-w-xs' />
           </label>
-          <button className="btn" type='submit'>Submit</button>
+          <button className='btn' type='submit'>
+            Submit
+          </button>
         </form>
       </FormProvider>
-      <div className="mockup-code">
+      <div className='mockup-code'>
         <div className='max-h-[50dvh] overflow-y-scroll'>
           {JSON.stringify(data, null, 2).split('\n').map((row, index) => {
             return (
