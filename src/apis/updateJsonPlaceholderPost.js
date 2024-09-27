@@ -4,9 +4,10 @@ import getCustomAxios from './utils/axios'
 
 export const endpoint = 'https://jsonplaceholder.typicode.com/posts'
 
-export const method = 'post'
+export const method = 'put'
 
-export const fetcher = () => async (key, { arg = {} }) => {
+export const fetcher = (query) => async (key, { arg = {} }) => {
+  const { id } = query
   const { title, content, userId } = arg
   const data = {
     title,
@@ -15,14 +16,14 @@ export const fetcher = () => async (key, { arg = {} }) => {
   }
   const axios = await getCustomAxios()
   return axios({
-    url: endpoint,
+    url: `${endpoint}/${id}`,
     method,
     data
   })
 }
 
-export const useCreateJsonPlaceholderPost = (query = {}, options = {}) => {
-  const result = useSWRMutation('useCreateJsonPlaceholderPost', fetcher(query), options)
+export const useUpdateJsonPlaceholderPost = (query = {}, options = {}) => {
+  const result = useSWRMutation('useUpdateJsonPlaceholderPost', fetcher(query), options)
   return result
 }
 

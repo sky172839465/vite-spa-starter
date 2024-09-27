@@ -5,7 +5,7 @@ const mock = (config) => {
   const body = JSON.parse(data)
   return {
     id: random(100, 999),
-    type: 'create',
+    type: 'update',
     ...body
   }
 }

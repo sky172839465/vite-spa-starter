@@ -1,20 +1,22 @@
 import MockAdapter from 'axios-mock-adapter'
-import { flow, get, reduce } from 'lodash-es'
+import { find, flow, get, keys, reduce } from 'lodash-es'
 
 const mockServiceMap = import.meta.glob(['../*.mock.js'], { eager: true })
 const mockServicePathMap = flow(
   () => import.meta.glob(['../*.js', '!../*.mock.js'], { eager: true }),
   serviceMap => reduce(serviceMap, (collect, service, filePath) => {
     const endpoint = get(service, 'endpoint')
-    collect[endpoint] = filePath.replace('.js', '.mock.js')
+    const method = get(service, 'method', 'get')
+    collect[`${method}_${endpoint}`] = filePath.replace('.js', '.mock.js')
     return collect
   }, {})
 )()
-
+const mockServicePathMapKeys = keys(mockServicePathMap)
 const getMockResponse = (config) => {
-  const { url = '' } = config
+  const { url = '', method } = config
   
-  const mockApiPath = get(mockServicePathMap, [url.split('?')[0]])
+  const targetPath = find(mockServicePathMapKeys, key => `${method}_${url.split('?')[0]}`.startsWith(key))
+  const mockApiPath = get(mockServicePathMap, [targetPath])
   const mocker = get(mockServiceMap, [mockApiPath, 'default'])
   if (!mocker) {
     return [500, { message: 'mockResponse not found' }]

@@ -3,10 +3,12 @@ import { isEmpty } from 'lodash-es'
 import { sleep } from 'radash'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { useCreateJsonPlaceholderUser } from '../../apis/createJsonPlaceholderPost'
+import { useCreateJsonPlaceholderPost } from '../../apis/createJsonPlaceholderPost'
+import { useUpdateJsonPlaceholderPost } from '../../apis/updateJsonPlaceholderPost'
 import { MOCK_KEY } from '../../apis/utils/axios'
 
 const defaultValues = {
+  apiType: 'post',
   title: 'foo',
   content: 'bar',
   userId: '10'
@@ -14,8 +16,10 @@ const defaultValues = {
 
 const PostPutApi = () => {
   const [mockValue, setMockValue] = useSessionStorage(MOCK_KEY)
-  const { trigger, data = {} } = useCreateJsonPlaceholderUser()
+  const { trigger: createPost, data: postData = {} } = useCreateJsonPlaceholderPost()
+  const { trigger: updatePost, data: putData = {} } = useUpdateJsonPlaceholderPost({ id: 3 })
   const methods = useForm({ defaultValues })
+  const apiType = methods.watch('apiType')
   const isChecked = isEmpty(mockValue) || mockValue === 'true'
 
   const onChange = async (e) => {
@@ -25,7 +29,16 @@ const PostPutApi = () => {
     window.location.reload()
   }
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    const { apiType: dataApiType, ...restData } = data
+    console.log(data)
+    if (dataApiType === 'post') {
+      createPost(restData)
+      return
+    }
+
+    updatePost(restData)
+  }
 
   return (
     <div className='space-y-2'>
@@ -44,6 +57,24 @@ const PostPutApi = () => {
       </div>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-2'>
+          <label className='form-control w-full max-w-xs'>
+            <div className='label'>
+              <span className='label-text'>
+                API type
+              </span>
+            </div>
+            <select {...methods.register('apiType')} className='select select-bordered'>
+              <option disabled selected>
+                Pick one
+              </option>
+              <option value='post'>
+                POST
+              </option>
+              <option value='put'>
+                PUT
+              </option>
+            </select>
+          </label>
           <label className='form-control w-full max-w-xs'>
             <div className='label'>
               <span className='label-text'>
@@ -75,7 +106,7 @@ const PostPutApi = () => {
       </FormProvider>
       <div className='mockup-code'>
         <div className='max-h-[50dvh] overflow-y-scroll'>
-          {JSON.stringify(data, null, 2).split('\n').map((row, index) => {
+          {JSON.stringify(apiType === 'post' ? postData : putData, null, 2).split('\n').map((row, index) => {
             return (
               <pre key={index}>
                 <code>
