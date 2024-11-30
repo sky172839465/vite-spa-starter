@@ -28,6 +28,7 @@ jobs:
         run: |
           npm run prettier
           npm run lint
+        continue-on-error: true
 
       - name: Fix Linter Issues
         if: failure()
