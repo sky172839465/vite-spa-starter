@@ -8,7 +8,7 @@ permissions:
   id-token: write
 
 jobs:
-  linters:
+  fix-syntax:
     runs-on: ubuntu-latest
 
     steps:
@@ -50,6 +50,28 @@ jobs:
           git add .
           git commit -m 'chore: fix code style issues with linters'
           git push
+
+  check-syntax:
+    runs-on: ubuntu-latest
+    needs: [fix-syntax]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Check linters
         run: |
