@@ -38,7 +38,6 @@ jobs:
         run: |
           git config --local user.name 'github-actions[bot]'
           git config --local user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout ${{ github.head_ref }}
           git add .
           git commit -m 'chore: fix code style issues with linters'
           git push
