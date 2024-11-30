@@ -52,7 +52,7 @@ jobs:
           git add .
           git commit -m "chore: fix code style issues with linters"
           git push
-          gh pr reopen ${{ env.PR_NUMBER }} -c "reopen pr to restart workflow"
+          gh pr update-branch ${{ env.PR_NUMBER }} --rebase
 
       - name: Check linters
         run: |
