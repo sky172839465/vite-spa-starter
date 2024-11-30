@@ -27,7 +27,10 @@ const ErrorElement = () => {
             {statusText || message}
           </p>
           <div className='mt-4'>
-            <Link to='../'>
+            <Link
+              to='../'
+              viewTransition
+            >
               <button
                 type='button'
                 className='btn btn-primary'

@@ -8,6 +8,7 @@ const PortalLink = (props) => {
       key={link.url}
       to={link.url}
       className='btn btn-outline btn-lg my-2'
+      viewTransition
     >
       {link.name}
     </Link>
