@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  if: ${{ github.actor != 'dependabot[bot]' }}
   deploy:
     environment:
       name: github-pages
