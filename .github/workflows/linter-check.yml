@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run linters
+      - name: Run linters fix
         run: |
           npm run prettier:fix
           npm run lint:fix
@@ -48,3 +48,8 @@ jobs:
           git add .
           git commit -m 'chore: fix code style issues with linters'
           git push
+
+      - name: Check linters
+        run: |
+          npm run prettier
+          npm run lint
