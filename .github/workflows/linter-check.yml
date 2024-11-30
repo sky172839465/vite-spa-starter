@@ -60,8 +60,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.number }}
+          FORMATTED_SHA: ${{ steps.commit_formatted_change.outputs.formatted_sha }}
         run: |
-          gh pr comment ${{ env.PR_NUMBER }} --body "🪄 code formatted. ${steps.commit_formatted_change.outputs.formatted_sha}"
+          echo ${{ env.FORMATTED_SHA }}
+          gh pr comment ${{ env.PR_NUMBER }} --body "🪄 code formatted. ${env.FORMATTED_SHA}"
 
       - name: Check linters
         if: ${{ steps.git_diff.outputs.changed != 1 }}
