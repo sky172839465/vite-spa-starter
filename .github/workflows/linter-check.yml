@@ -52,7 +52,8 @@ jobs:
           git add .
           git commit -m "chore: fix code style issues with linters"
           git push
-          gh pr update-branch ${{ env.PR_NUMBER }} --rebase
+          gh pr close ${{ env.PR_NUMBER }} -c "close pr to skip next step"
+          gh pr reopen ${{ env.PR_NUMBER }} -c "reopen pr to restart workflow"
 
       - name: Check linters
         run: |
