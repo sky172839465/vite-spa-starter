@@ -1,6 +1,7 @@
 name: linter-check
 on:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -53,7 +54,8 @@ jobs:
           git add .
           git commit -m "chore: fix code style issues with linters"
           git push
-          gh pr checkout ${{ env.PR_NUMBER }} --detach
+          gh pr checks ${{ env.PR_NUMBER }} --fail-fast
+          gh workflow run linter-check.yml
 
       - name: Check linters
         run: |
