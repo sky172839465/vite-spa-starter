@@ -9,9 +9,6 @@ permissions:
   id-token: write
   actions: write
 
-env:
-  GITHUB_TOKEN: ${{ secrets.CWA_PROTECTED_BRANCH_TOKEN }}
-
 jobs:
   linters:
     runs-on: ubuntu-latest
