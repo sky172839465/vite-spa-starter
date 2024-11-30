@@ -2,7 +2,7 @@ name: linter-check
 on: pull_request
 
 jobs:
-  prettier:
+  linters:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,10 +31,10 @@ jobs:
       - name: Check for changes
         id: git_diff
         run: |
-          git diff --exit-code || echo "changes"
+          git diff --exit-code || echo "changed=1" >> $GITHUB_OUTPUT
 
       - name: Commit if code changed by linter
-        if: steps.git_diff.outputs.changed == 'changes'
+        if: ${{ steps.git_diff.outputs.changed == 1 }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
