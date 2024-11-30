@@ -42,9 +42,8 @@ jobs:
       - name: Commit if code changed by linter
         if: ${{ steps.git_diff.outputs.changed == 1 }}
         run: |
-          git config user.name 'github-actions[bot]'
-          # https://github.com/actions/checkout?tab=readme-ov-file#push-a-commit-to-a-pr-using-the-built-in-token
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add .
           git commit -m 'chore: fix code style issues with linters'
           git push
