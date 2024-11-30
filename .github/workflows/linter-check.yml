@@ -1,6 +1,6 @@
 name: linter-check
 on:
-  pull_request_target:
+  push:
 
 permissions:
   contents: write
