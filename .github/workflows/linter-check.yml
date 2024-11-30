@@ -23,18 +23,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Linter
-        id: prettier
-        run: |
-          npm run prettier
-          npm run lint
-        continue-on-error: true
-
-      - name: Fix Linter Issues
-        if: failure()
+      - name: Run linters
         run: |
           npm run prettier:fix
           npm run lint:fix
+
+      - name: Check for changes
+        id: git_diff
+        run: |
+          git diff --exit-code || echo "changes"
+
+      - name: Commit if code changed by linter
+        if: steps.git_diff.outputs.changed == 'changes'
+        run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git checkout ${{ github.head_ref }}
