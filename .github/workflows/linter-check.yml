@@ -48,6 +48,10 @@ jobs:
           git add .
           git commit -m 'chore: fix code style issues with linters'
           git push
+          # force push to pr
+          # https://github.com/orgs/community/discussions/26698#discussioncomment-7564287
+          git commit --amend --no-edit
+          git push --force-with-lease
 
       - name: Check linters
         run: |
