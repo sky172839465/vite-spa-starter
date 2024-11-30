@@ -55,11 +55,7 @@ jobs:
           git add .
           git commit -m "chore: fix code style issues with linters"
           git push
-          echo formatted_sha=$(git rev-parse --short HEAD)
-          echo export SSHA=$(git rev-parse --short HEAD)
-          gh pr comment ${{ env.PR_NUMBER }} --body "🪄 code formatted. $formatted_sha"
-          gh pr comment ${{ env.PR_NUMBER }} --body "🪄 code formatted. $(git rev-parse --short HEAD)"
-          gh pr comment ${{ env.PR_NUMBER }} --body "🪄 code formatted. $SSHA"
+          gh pr comment ${{ env.PR_NUMBER }} --body "🪄 Code formatted, commit: $(git rev-parse --short HEAD)."
 
       - name: Check linters
         if: ${{ steps.git_diff.outputs.changed != 1 }}
