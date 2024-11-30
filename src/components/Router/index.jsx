@@ -15,7 +15,15 @@ const withErrorElement = (routes) => routes.map((item) => {
   } = item
   return {
     ...route,
-    element: <Comp />,
+    element: (
+      <Suspense
+        fallback={(
+          <SkeletonHome className='fixed top-0 z-0' />
+        )}
+      >
+        <Comp />
+      </Suspense>
+    ),
     errorElement: <ErrorElement />
   }
 })
@@ -43,13 +51,12 @@ const Router = (props) => {
   // console.log(totalRoutes, appBaseName)
   const router = createBrowserRouter(totalRoutes, { basename: appBaseName })
   return (
-    <Suspense
-      fallback={(
+    <RouterProvider
+      router={router}
+      fallbackElement={(
         <SkeletonHome className='fixed top-0 z-0' />
       )}
-    >
-      <RouterProvider router={router} />
-    </Suspense>
+    />
   )
 }
 

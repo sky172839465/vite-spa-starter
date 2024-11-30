@@ -38,7 +38,10 @@ const index = () => {
                     key={link.url}
                     className='rounded-md bg-base-200'
                   >
-                    <Link to={link.url}>
+                    <Link
+                      to={link.url}
+                      viewTransition
+                    >
                       {link.name}
                     </Link>
                   </li>

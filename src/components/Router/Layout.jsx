@@ -9,6 +9,7 @@ const Layout = () => {
         <Link
           className='btn btn-ghost text-xl'
           to='/'
+          viewTransition
         >
           Home
         </Link>
