@@ -1,0 +1,42 @@
+name: linter-check
+on: pull_request
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Linter
+        id: prettier
+        run: |
+          npm run prettier
+          npm run lint
+
+      - name: Fix Linter Issues
+        if: failure()
+        run: |
+          npm run prettier:fix
+          npm run lint:fix
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout ${{ github.head_ref }}
+          git add .
+          git commit -m 'chore: fix code style issues with Linter'
+          git push

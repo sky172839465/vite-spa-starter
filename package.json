@@ -12,7 +12,8 @@
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "prepare": "husky",
-    "format": "prettier . --write"
+    "prettier": "prettier . -c",
+    "prettier:fix": "prettier . --write"
   },
   "dependencies": {
     "@react-hooks-library/core": "^0.6.2",
