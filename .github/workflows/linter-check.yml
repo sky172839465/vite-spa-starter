@@ -10,7 +10,7 @@ permissions:
   actions: write
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.CWA_PROTECTED_BRANCH_TOKEN }}
 
 jobs:
   linters:
