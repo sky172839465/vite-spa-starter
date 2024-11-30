@@ -1,6 +1,10 @@
 name: linter-check
 on: pull_request
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   linters:
     runs-on: ubuntu-latest
