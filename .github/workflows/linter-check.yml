@@ -55,7 +55,7 @@ jobs:
           git push
           echo formatted_sha=$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
 
-      - name: Commit if code changed by linter
+      - name: Add formatted comment
         needs: [commit_formatted_change]
         env:
           GH_TOKEN: ${{ github.token }}
