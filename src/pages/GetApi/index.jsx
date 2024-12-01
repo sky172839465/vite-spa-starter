@@ -18,7 +18,7 @@ const GetApi = () => {
   }
 
   return (
-    <div className='flex flex-col h-[calc(100dvh-5rem)]'>
+    <div className='flex h-[calc(100dvh-5rem)] flex-col'>
       <div className='form-control'>
         <label className='label cursor-pointer justify-start'>
           <input
@@ -32,7 +32,7 @@ const GetApi = () => {
           </span>
         </label>
       </div>
-      <div className='mockup-code flex-grow'>
+      <div className='mockup-code grow'>
         <div className='h-full overflow-y-scroll'>
           {JSON.stringify(data, null, 2).split('\n').map((row, index) => {
             return (
