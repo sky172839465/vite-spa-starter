@@ -41,7 +41,7 @@ const PostPutApi = () => {
   }
 
   return (
-    <div className='space-y-2'>
+    <div className='flex flex-col h-[calc(100dvh-5rem)] space-y-2'>
       <div className='form-control'>
         <label className='label cursor-pointer justify-start'>
           <input
@@ -104,7 +104,7 @@ const PostPutApi = () => {
           </button>
         </form>
       </FormProvider>
-      <div className='mockup-code'>
+      <div className='mockup-code flex-grow'>
         <div className='max-h-[50dvh] overflow-y-scroll'>
           {JSON.stringify(apiType === 'post' ? postData : putData, null, 2).split('\n').map((row, index) => {
             return (
