@@ -1,4 +1,4 @@
-import { find, flow, get, isEmpty, keys, map, orderBy, reduce, size } from 'lodash-es'
+import { find, flow, get, isEmpty, keys, map, orderBy, size } from 'lodash-es'
 import { lazy } from 'react'
 
 import getRootPagesEntries from './getRootPagesEntries.js'
@@ -36,23 +36,23 @@ const getClosestLayout = (layouts) => {
 }
 
 const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
-  const pagePosts = reduce(posts, (collect, result, key) => {
-    collect[key.replace('.md', '.jsx')] = result
-    return collect
-  }, {})
   const getClosestLayoutFromGlob = getClosestLayout(layouts)
   const routes = flow(
     () => {
       const entires = {
         ...pages,
-        ...pagePosts
+        ...posts
       }
       return isRoot ? getRootPagesEntries(entires) : Object.entries(entires)
     },
     (pagesEntries) => pagesEntries.reduce((collect, pagesEntry) => {
-      const [path, page, rootPath] = pagesEntry
-      const convertedPath = (isRoot ? rootPath : path).match(/.*\/pages(.*)/)[1]
-      const fileName = `./pages/${convertedPath}`.match(/\.{1,2}\/pages\/(.*)\.jsx$/)?.[1]
+      const [originPath, page, rootPath] = pagesEntry
+      const convertedPath = (isRoot ? rootPath : originPath).match(/.*\/pages(.*)/)[1]
+      const fileName = (
+        `./pages/${convertedPath}`.match(/\.{1,2}\/pages\/(.*)\.jsx$/)?.[1] ||
+        `./pages/${convertedPath}`.match(/\.{1,2}\/pages\/(.*)\.md$/)?.[1]
+      )
+      const path = originPath.replace('.md', '.jsx')
       const loaderPath = path.replace(FILE_NAME.MAIN, FILE_NAME.LOADER)
       if (!fileName) {
         return collect
@@ -65,9 +65,13 @@ const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
       const isIndex = fileName === '/index'
       const pageLoader = get(loaders, loaderPath)
       const layout = getClosestLayoutFromGlob(path)
+      const isMarkdown = originPath.endsWith('.md')
       collect.push({
+        isMarkdown,
+        markdown: isMarkdown ? page() : undefined,
+        filePath: path,
         path: isIndex ? '/' : `${normalizedPathName.toLowerCase()}/`,
-        element: lazy(page),
+        element: isMarkdown ? undefined : lazy(page),
         layout: layout ? lazy(layout) : undefined,
         loader: pageLoader
           ? (...args) => pageLoader().then((module) => module.default(...args))

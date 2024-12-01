@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import {
+  Await,
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
@@ -10,10 +11,13 @@ import ErrorElement from './ErrorElement.jsx'
 import loader from './index.loader'
 
 const LazyLayout = lazy(() => import('./Layout.jsx'))
+const LazyMarkdown = lazy(() => import('../Markdown/index.jsx'))
 
 const withErrorElement = (routes) => routes.map((item) => {
   const {
     element: Comp,
+    markdown,
+    isMarkdown,
     layout: Layout = LazyLayout,
     ...route
   } = item
@@ -26,7 +30,14 @@ const withErrorElement = (routes) => routes.map((item) => {
         )}
       >
         <Layout>
-          <Comp />
+          {isMarkdown && (
+            <Await resolve={markdown}>
+              <LazyMarkdown />
+            </Await>
+          )}
+          {!isMarkdown && (
+            <Comp />
+          )}
         </Layout>
       </Suspense>
     ),
@@ -42,8 +53,8 @@ const Router = (props) => {
     {
       element: <Root />,
       loader,
-      children: withErrorElement([
-        ...routes,
+      children: [
+        ...withErrorElement(routes),
         {
           path: '/test',
           element: SkeletonHome
@@ -52,7 +63,7 @@ const Router = (props) => {
           path: '/*',
           element: ErrorElement
         }
-      ])
+      ]
     }
   ]
   // console.log(totalRoutes, appBaseName)

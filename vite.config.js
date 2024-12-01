@@ -19,7 +19,7 @@ export default ({ mode }) => {
       : '',
     plugins: [
       react(),
-      mdPlugin.plugin({ mode: 'react' })
+      mdPlugin.plugin({ mode: 'html' })
     ],
     css: {
       postcss: {
