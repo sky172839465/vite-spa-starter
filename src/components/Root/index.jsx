@@ -1,12 +1,12 @@
 import { get } from 'lodash-es'
 import { useRef } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { Outlet } from 'react-router-dom'
 import { SWRConfig } from 'swr'
 
 import fetcher from '../../utils/fetcher'
 
-const Root = (props) => {
-  const { children } = props
+const Root = () => {
   const errorToastIdRef = useRef()
   const errorToastKeyRef = useRef()
 
@@ -37,7 +37,7 @@ const Root = (props) => {
           onSuccess
         }}
       >
-        {children}
+        <Outlet />
       </SWRConfig>
       <Toaster />
     </>
