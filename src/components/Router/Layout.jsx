@@ -1,7 +1,7 @@
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-const Layout = () => {
-  // const { appBaseName } = props
+const Layout = (props) => {
+  const { children } = props
   const { pathname } = useLocation()
   return (
     <>
@@ -18,7 +18,7 @@ const Layout = () => {
         </p>
       </div>
       <div className='h-[calc(100dvh-4rem)] w-full max-w-full p-2'>
-        <Outlet />
+        {children}
       </div>
     </>
   )

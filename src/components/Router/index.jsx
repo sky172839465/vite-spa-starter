@@ -1,17 +1,21 @@
-import { Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
 
+import Root from '../Root/index.jsx'
 import SkeletonHome from '../SkeletonHome/index.jsx'
 import ErrorElement from './ErrorElement.jsx'
 import loader from './index.loader'
-import Layout from './Layout.jsx'
+
+const LazyLayout = lazy(() => import('./Layout.jsx'))
 
 const withErrorElement = (routes) => routes.map((item) => {
   const {
-    element: Comp, ...route
+    element: Comp,
+    layout: Layout = LazyLayout,
+    ...route
   } = item
   return {
     ...route,
@@ -21,19 +25,22 @@ const withErrorElement = (routes) => routes.map((item) => {
           <SkeletonHome className='fixed top-0 z-0' />
         )}
       >
-        <Comp />
+        <Layout>
+          <Comp />
+        </Layout>
       </Suspense>
     ),
     errorElement: <ErrorElement />
   }
 })
 
+
 const Router = (props) => {
   const { routes, basename = '/' } = props
   const appBaseName = `${window.APP_BASENAME}${basename}`
   const totalRoutes = [
     {
-      element: <Layout appBaseName={appBaseName} />,
+      element: <Root />,
       loader,
       children: withErrorElement([
         ...routes,
