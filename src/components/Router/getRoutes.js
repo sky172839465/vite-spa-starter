@@ -18,7 +18,6 @@ const getClosestLayout = (layouts) => {
 
   return (pagePath) => {
     const layoutPath = pagePath.replace(FILE_NAME.MAIN, FILE_NAME.LAYOUT)
-    console.log('pagePath', pagePath, layoutPath, layouts)
     const sameLayerLayout = get(layouts, [layoutPath])
     if (sameLayerLayout) {
       return sameLayerLayout
