@@ -1,4 +1,4 @@
-import { find, flow, get, isEmpty, keys, map, orderBy, size } from 'lodash-es'
+import { find, flow, get, isEmpty, keys, map, orderBy, reduce, size } from 'lodash-es'
 import { lazy } from 'react'
 
 import getRootPagesEntries from './getRootPagesEntries.js'
@@ -35,11 +35,19 @@ const getClosestLayout = (layouts) => {
   }
 }
 
-const getRoutes = (pages, loaders, layouts, isRoot = false) => {
+const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
+  const pagePosts = reduce(posts, (collect, result, key) => {
+    collect[key.replace('.md', '.jsx')] = result
+    return collect
+  }, {})
   const getClosestLayoutFromGlob = getClosestLayout(layouts)
   const routes = flow(
     () => {
-      return isRoot ? getRootPagesEntries(pages) : Object.entries(pages)
+      const entires = {
+        ...pages,
+        ...pagePosts
+      }
+      return isRoot ? getRootPagesEntries(entires) : Object.entries(entires)
     },
     (pagesEntries) => pagesEntries.reduce((collect, pagesEntry) => {
       const [path, page, rootPath] = pagesEntry
