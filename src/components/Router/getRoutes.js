@@ -51,8 +51,8 @@ const getConvertedPosts = (posts) => {
           return codeToHtml(code, {
             lang,
             themes: {
-              light: 'min-light',
-              dark: 'nord'
+              light: 'github-light',
+              dark: 'github-dark'
             }
           })
         })
@@ -97,6 +97,9 @@ const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
       const normalizedPathName = fileName
         .replace('$', ':')
         .replace(/\/index/, '')
+        .split('/')
+        .map(splitPath => splitPath.toLowerCase())
+        .join('/')
 
       const isIndex = fileName === '/index'
       const pageLoader = get(loaders, loaderPath)
@@ -105,8 +108,8 @@ const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
       collect.push({
         isMarkdown,
         markdown: isMarkdown ? page() : undefined,
-        filePath: path,
-        path: isIndex ? '/' : `${normalizedPathName.toLowerCase()}/`,
+        filePath: originPath,
+        path: isIndex ? '/' : `${normalizedPathName}/`,
         element: isMarkdown ? undefined : lazy(page),
         layout: layout ? lazy(layout) : undefined,
         loader: pageLoader

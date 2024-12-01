@@ -1,7 +1,7 @@
 import { keys, last } from 'lodash-es'
 import { Link } from 'react-router-dom'
 
-const posts = import.meta.glob('./**/*.md')
+const posts = import.meta.glob(['./**/*.md', '!./**/*.draft.md'])
 
 const Posts = () => {
   return (
