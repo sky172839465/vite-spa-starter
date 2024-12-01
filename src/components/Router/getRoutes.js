@@ -97,6 +97,9 @@ const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
       const normalizedPathName = fileName
         .replace('$', ':')
         .replace(/\/index/, '')
+        .split('/')
+        .map(splitPath => splitPath.toLowerCase())
+        .join('/')
 
       const isIndex = fileName === '/index'
       const pageLoader = get(loaders, loaderPath)
@@ -106,7 +109,7 @@ const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
         isMarkdown,
         markdown: isMarkdown ? page() : undefined,
         filePath: originPath,
-        path: isIndex ? '/' : `${normalizedPathName.toLowerCase()}/`,
+        path: isIndex ? '/' : `${normalizedPathName}/`,
         element: isMarkdown ? undefined : lazy(page),
         layout: layout ? lazy(layout) : undefined,
         loader: pageLoader

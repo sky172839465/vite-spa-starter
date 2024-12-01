@@ -32,7 +32,7 @@ const withErrorElement = (routes) => routes.map((item) => {
         <Layout>
           {isMarkdown && (
             <Await resolve={markdown}>
-              <LazyMarkdown />
+              <LazyMarkdown {...item} />
             </Await>
           )}
           {!isMarkdown && (
