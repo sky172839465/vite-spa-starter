@@ -66,7 +66,7 @@ const getConvertedPosts = (posts) => {
     })
     collect[postKey] = result
     return collect
-  })
+  }, {})
   return convertedPosts
 }
 
