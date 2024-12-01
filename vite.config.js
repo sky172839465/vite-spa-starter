@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react'
 import tailwindcss from 'tailwindcss'
 import { defineConfig } from 'vite'
+import mdPlugin from 'vite-plugin-markdown'
 
 import { name } from './package.json'
 const {
@@ -16,7 +17,10 @@ export default ({ mode }) => {
     base: isProd
       ? BASENAME ? appBaseName : undefined
       : '',
-    plugins: [react()],
+    plugins: [
+      react(),
+      mdPlugin.plugin({ mode: 'html' })
+    ],
     css: {
       postcss: {
         plugins: [tailwindcss()]
