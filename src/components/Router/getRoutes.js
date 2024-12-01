@@ -51,8 +51,8 @@ const getConvertedPosts = (posts) => {
           return codeToHtml(code, {
             lang,
             themes: {
-              light: 'min-light',
-              dark: 'nord'
+              light: 'github-light',
+              dark: 'github-dark'
             }
           })
         })
@@ -105,7 +105,7 @@ const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
       collect.push({
         isMarkdown,
         markdown: isMarkdown ? page() : undefined,
-        filePath: path,
+        filePath: originPath,
         path: isIndex ? '/' : `${normalizedPathName.toLowerCase()}/`,
         element: isMarkdown ? undefined : lazy(page),
         layout: layout ? lazy(layout) : undefined,
