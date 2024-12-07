@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom'
 import { SWRConfig } from 'swr'
 
 import fetcher from '../../utils/fetcher'
+import CustomSwipe from '../CustomSwipe'
 
 const Root = () => {
   const errorToastIdRef = useRef()
@@ -40,6 +41,7 @@ const Root = () => {
         <Outlet />
       </SWRConfig>
       <Toaster />
+      <CustomSwipe />
     </>
   )
 }
