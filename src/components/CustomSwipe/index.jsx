@@ -10,6 +10,7 @@ const CustomSwipe = () => {
     swiping,
     isSwipeFromLeft,
     isSwipeFromRight,
+    opacityPercent,
     distanceInPercent
   } = useSwipeHandler()
 
@@ -27,10 +28,6 @@ const CustomSwipe = () => {
         const isLeftArrow = isSwipeFromLeft && swiping && index === 0
         const isRightArrow = isSwipeFromRight && swiping && index === 1
         const defaultXPosition = DEFAULT_X_POSITION[index]
-        const opacityPercent = Math.abs(distanceInPercent)
-        if (isLeftArrow) {
-          console.log(defaultXPosition + distanceInPercent * defaultXPosition * -1)
-        }
         return (
           <div
             key={index}

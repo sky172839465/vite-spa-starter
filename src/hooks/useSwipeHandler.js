@@ -8,14 +8,16 @@ const SCREEN_WIDTH = window.innerWidth
 const useSwipeHandler = () => {
   const startX = useRef(0)
   const [swipeDistance, setSwipeDistance] = useState(0)
+  const [opacityPercent, setOpacityPercent] = useState(0)
   const isSwipeFromLeft = swipeDistance > 0
   const isSwipeFromRight = swipeDistance < 0
-  const distanceInPercent = swipeDistance / SCREEN_WIDTH
   const swiping = swipeDistance !== 0
+  const distanceInPercent = swipeDistance / SCREEN_WIDTH
 
   const resetSwipe = () => {
     startX.current = -1
     setSwipeDistance(0)
+    setOpacityPercent(0)
   }
 
   useEventListener('touchstart', (e) => {
@@ -23,6 +25,7 @@ const useSwipeHandler = () => {
     const sceeenDistance = SCREEN_WIDTH - touchX
     const isStartSwipe = touchX <= MAXIMUM_TRIGGER_PX || sceeenDistance <= MAXIMUM_TRIGGER_PX
     setSwipeDistance(0)
+    setOpacityPercent(0)
 
     // prevent swipe from left & right 20px
     if (min([touchX, Math.abs(sceeenDistance)]) < 20) {
@@ -47,6 +50,7 @@ const useSwipeHandler = () => {
     const rate = distance > 0 ? 1 : -1
     const limitDistance = min([Math.abs(distance), SCREEN_WIDTH]) * rate
     setSwipeDistance(limitDistance)
+    setOpacityPercent(Math.abs(limitDistance / SCREEN_WIDTH))
     e.preventDefault()
   }, { passive: false })
 
@@ -64,12 +68,13 @@ const useSwipeHandler = () => {
     }
 
     const isSwipeToRight = currentDistanceInPercent > 0
-    setSwipeDistance(SCREEN_WIDTH * (isSwipeToRight ? 1 : -1))
+    setOpacityPercent(1)
     history.go(isSwipeToRight ? -1 : 1)
     delay(() => resetSwipe(), 100)
   })
 
   return {
+    opacityPercent,
     distanceInPercent,
     isSwipeFromLeft,
     isSwipeFromRight,
