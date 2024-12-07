@@ -102,8 +102,10 @@ const Markdown = (props) => {
             </a>
             <ul
               className={`
-                menu dropdown-content !fixed !bottom-20 !left-2 m-0 w-[calc(100%-1rem)] rounded-box 
-                bg-black p-2 text-white shadow dark:bg-slate-700 [&_a]:whitespace-nowrap
+                menu dropdown-content !fixed 
+                !bottom-20 !left-2 m-0 w-[calc(100%-1rem)] rounded-box bg-black
+                p-2 text-white shadow md:!left-[25dvw] md:w-auto
+                dark:bg-slate-700 [&_a]:whitespace-nowrap
               `}
             >
               {map(sections, (section, index) => {
@@ -114,7 +116,7 @@ const Markdown = (props) => {
                       <a
                         data-hash={section.hash}
                         onClick={scrollToSection}
-                        className='block w-[82dvw] truncate'
+                        className='block w-[82dvw] truncate md:w-[50dvw]'
                       >
                         {section.label}
                       </a>
