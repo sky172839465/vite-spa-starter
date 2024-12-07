@@ -49,8 +49,12 @@ const useSwipeHandler = () => {
     const distance = touchX - startX.current
     const rate = distance > 0 ? 1 : -1
     const limitDistance = min([Math.abs(distance), SCREEN_WIDTH]) * rate
+    const convertedOpacityPercent = min([
+      Math.abs(limitDistance * 2 / SCREEN_WIDTH),
+      1
+    ])
     setSwipeDistance(limitDistance)
-    setOpacityPercent(Math.abs(limitDistance / SCREEN_WIDTH))
+    setOpacityPercent()
     e.preventDefault()
   }, { passive: false })
 
@@ -68,7 +72,7 @@ const useSwipeHandler = () => {
     }
 
     const isSwipeToRight = currentDistanceInPercent > 0
-    setOpacityPercent(1)
+    setOpacityPercent(0)
     history.go(isSwipeToRight ? -1 : 1)
     delay(() => resetSwipe(), 100)
   })
