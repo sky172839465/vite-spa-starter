@@ -54,7 +54,7 @@ const useSwipeHandler = () => {
       1
     ])
     setSwipeDistance(limitDistance)
-    setOpacityPercent()
+    setOpacityPercent(convertedOpacityPercent)
     e.preventDefault()
   }, { passive: false })
 
