@@ -28,6 +28,9 @@ const CustomSwipe = () => {
         const isRightArrow = isSwipeFromRight && swiping && index === 1
         const defaultXPosition = DEFAULT_X_POSITION[index]
         const opacityPercent = Math.abs(distanceInPercent)
+        if (isLeftArrow) {
+          console.log(defaultXPosition + distanceInPercent * defaultXPosition * -1)
+        }
         return (
           <div
             key={index}

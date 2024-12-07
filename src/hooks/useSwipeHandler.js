@@ -24,8 +24,8 @@ const useSwipeHandler = () => {
     const isStartSwipe = touchX <= MAXIMUM_TRIGGER_PX || sceeenDistance <= MAXIMUM_TRIGGER_PX
     setSwipeDistance(0)
 
-    // prevent swipe from left & right 10px
-    if (min([touchX, Math.abs(sceeenDistance)]) < 10) {
+    // prevent swipe from left & right 20px
+    if (min([touchX, Math.abs(sceeenDistance)]) < 20) {
       e.preventDefault()
     }
 
