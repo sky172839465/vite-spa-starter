@@ -1,5 +1,5 @@
 import { useEventListener } from '@react-hooks-library/core'
-import { delay, min } from 'lodash-es'
+import {min } from 'lodash-es'
 import { useRef, useState } from 'react'
 
 const MAXIMUM_TRIGGER_PX = 40
@@ -66,15 +66,13 @@ const useSwipeHandler = () => {
     // not enought to swipe back / forward
     const touchX = e.changedTouches[0].clientX
     const currentDistanceInPercent = (touchX - startX.current) / SCREEN_WIDTH
+    resetSwipe()
     if (Math.abs(currentDistanceInPercent) < 0.4) {
-      resetSwipe()
       return
     }
 
     const isSwipeToRight = currentDistanceInPercent > 0
-    setOpacityPercent(0)
     history.go(isSwipeToRight ? -1 : 1)
-    delay(() => resetSwipe(), 100)
   })
 
   return {
