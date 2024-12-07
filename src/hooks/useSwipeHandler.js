@@ -44,7 +44,9 @@ const useSwipeHandler = () => {
 
     const touchX = e.touches[0].clientX
     const distance = touchX - startX.current
-    setSwipeDistance(distance)
+    const rate = distance > 0 ? 1 : -1
+    const limitDistance = min([Math.abs(distance), SCREEN_WIDTH]) * rate
+    setSwipeDistance(limitDistance)
     e.preventDefault()
   }, { passive: false })
 
