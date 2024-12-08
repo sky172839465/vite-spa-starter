@@ -6,14 +6,14 @@ const posts = import.meta.glob(['./**/*.md', '!./**/*.draft.md'])
 const Posts = () => {
   return (
     <div
-      className='hero h-full bg-base-200'
+      className='hero h-full'
     >
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <p className='py-4 font-bold'>
             Links
           </p>
-          <div className='mt-2 rounded-box bg-white p-2'>
+          <div className='mt-2 rounded-box bg-slate-200 p-2 dark:bg-slate-700'>
             <ul className='menu w-full space-y-2 rounded-md p-0'>
               {keys(posts).map((post) => {
                 const postInfo = post.replace('./', '').replace('/index.md', '').split('/')
@@ -22,7 +22,7 @@ const Posts = () => {
                 return (
                   <li
                     key={name}
-                    className='rounded-md bg-base-200'
+                    className='rounded-md bg-slate-100 dark:bg-slate-800'
                   >
                     <Link
                       to={`./${type}/${name}`}

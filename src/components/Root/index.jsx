@@ -25,7 +25,7 @@ const Root = () => {
   }
 
   return (
-    <>
+    <div className='bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-100'>
       <SWRConfig
         value={{
           // https://swr.vercel.app/docs/api
@@ -42,7 +42,7 @@ const Root = () => {
       </SWRConfig>
       <Toaster />
       <CustomSwipe />
-    </>
+    </div>
   )
 }
 
