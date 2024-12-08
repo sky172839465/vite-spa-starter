@@ -1,17 +1,12 @@
-import { useIntersectionObserver } from '@react-hooks-library/core'
-import { useRef } from 'react'
-
 const BottomActions = (props) => {
   const { children } = props
-  const inner = useRef()
-  const { inView } = useIntersectionObserver(inner)
 
   return (
     <>
-      <div ref={inner} className='h-px w-full' />
+      <div className='h-px w-full' />
       <div
         className={`
-          ${inView ? 'sticky' : 'fixed'} bottom-8 left-0 flex w-full justify-center transition-all
+          sticky bottom-8 left-0 flex w-full justify-center transition-all
         `}
       >
         <ul

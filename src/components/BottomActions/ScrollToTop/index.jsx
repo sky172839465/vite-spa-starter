@@ -1,8 +1,9 @@
 import { GoMoveToTop } from 'react-icons/go'
 
-const ScrollToTop = () => {
+const ScrollToTop = (props) => {
+  const { topRef } = props
   const scrollToTop = () => {
-    window.scrollTo({ behavior: 'smooth', top: 0 })
+    topRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (

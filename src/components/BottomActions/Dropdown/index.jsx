@@ -1,5 +1,5 @@
 import { useClickOutside, useToggle } from '@react-hooks-library/core'
-import { isEmpty,map } from 'lodash-es'
+import { isEmpty, map } from 'lodash-es'
 import { useRef } from 'react'
 import { FaList } from 'react-icons/fa6'
 import { MdTitle } from 'react-icons/md'
@@ -19,7 +19,7 @@ const Dropdown = (props) => {
   }
 
   useClickOutside(sectionDropdownRef, setFalse)
-  
+
   if (isEmpty(sections)) {
     return null
   }
@@ -39,9 +39,9 @@ const Dropdown = (props) => {
         </a>
         <ul
           className={`
-            menu dropdown-content !fixed 
-            !bottom-20 !left-2 m-0 w-[calc(100%-1rem)] rounded-box bg-black
-            p-2 text-white shadow md:!left-[25dvw] md:w-auto
+            menu dropdown-content
+            !fixed !bottom-24 left-2 m-0 w-[calc(100dvw-1rem)] rounded-box bg-black
+            p-2 text-white shadow md:w-auto
             dark:bg-slate-700 [&_a]:whitespace-nowrap
           `}
         >
