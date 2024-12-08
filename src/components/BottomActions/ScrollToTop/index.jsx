@@ -2,7 +2,7 @@ import { GoMoveToTop } from 'react-icons/go'
 
 const ScrollToTop = () => {
   const scrollToTop = () => {
-    document.querySelector('body').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.scrollTo({ behavior: 'smooth', top: 0 })
   }
 
   return (
