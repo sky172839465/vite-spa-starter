@@ -1,49 +1,28 @@
 import 'github-markdown-css/github-markdown.css'
 
-import { useClickOutside, useIsSupported, useToggle } from '@react-hooks-library/core'
 import { flow, map } from 'lodash-es'
 import { useEffect, useRef, useState } from 'react'
-import { FaList, FaShare } from 'react-icons/fa6'
-import { GoMoveToTop } from 'react-icons/go'
-import { MdTitle } from 'react-icons/md'
 import useSWR from 'swr'
 
 import BottomActions from '../BottomActions'
+import Dropdown from '../BottomActions/Dropdown'
+import ScrollToTop from '../BottomActions/ScrollToTop'
+import Shared from '../BottomActions/Share'
 
 const Markdown = (props) => {
   const { filePath, markdown } = props
   const articleRef = useRef()
   const topRef = useRef()
-  const sectionDropdownRef = useRef()
-  const { bool: isSectionVisible, toggle, setFalse } = useToggle(false)
   const [sections, setSections] = useState([])
-  const isShareSupported = useIsSupported(() => !!navigator?.share)
   const { data } = useSWR(filePath, markdown, { suspense: true })
   const { html: __html, attributes } = data
   const { title, description } = attributes
+  const shareData = {
+    title,
+    text: description,
+    url: window.location.href
+  }
   // console.log(props, attributes)
-
-  const scrollToTop = () => {
-    topRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  const scrollToSection = (e) => {
-    const target = document.querySelector(`a[href="${e.target.dataset.hash}"]`)
-    if (!target) {
-      return
-    }
-
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  const sharePost = () => {
-    const shareData = {
-      title,
-      text: description,
-      url: window.location.href
-    }
-    navigator && navigator.share(shareData)
-  }
 
   useEffect(() => {
     if (!articleRef.current) {
@@ -60,8 +39,6 @@ const Markdown = (props) => {
     )()
     setSections(articleSections)
   }, [])
-
-  useClickOutside(sectionDropdownRef, setFalse)
 
   return (
     <>
@@ -89,57 +66,12 @@ const Markdown = (props) => {
         </article>
       </div>
       <BottomActions>
-        <li>
-          <div
-            ref={sectionDropdownRef}
-            onClick={toggle}
-            className={`
-              dropdown dropdown-top ${isSectionVisible ? 'dropdown-open' : ''}
-            `}
-          >
-            <FaList />
-            <a role='button'>
-              章節
-            </a>
-            <ul
-              className={`
-                menu dropdown-content !fixed 
-                !bottom-20 !left-2 m-0 w-[calc(100%-1rem)] rounded-box bg-black
-                p-2 text-white shadow md:!left-[25dvw] md:w-auto
-                dark:bg-slate-700 [&_a]:whitespace-nowrap
-              `}
-            >
-              {map(sections, (section, index) => {
-                return (
-                  <li key={index}>
-                    <div className='flex flex-row'>
-                      <MdTitle />
-                      <a
-                        data-hash={section.hash}
-                        onClick={scrollToSection}
-                        className='block w-[82dvw] truncate md:w-[50dvw]'
-                      >
-                        {section.label}
-                      </a>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </li>
-        <li className={`${isShareSupported ? '' : 'disabled pointer-events-none'}`}>
-          <a onClick={sharePost}>
-            <FaShare />
-            分享
-          </a>
-        </li>
-        <li>
-          <a onClick={scrollToTop}>
-            <GoMoveToTop />
-            置頂
-          </a>
-        </li>
+        <Dropdown
+          title='章節'
+          sections={sections}
+        />
+        <Shared shareData={shareData} />
+        <ScrollToTop />
       </BottomActions>
     </>
   )
