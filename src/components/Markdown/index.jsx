@@ -70,7 +70,7 @@ const Markdown = (props) => {
           sections={sections}
         />
         <Shared shareData={shareData} />
-        <ScrollToTop />
+        <ScrollToTop topRef={topRef} />
       </BottomActions>
     </>
   )
