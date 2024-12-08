@@ -1,5 +1,5 @@
 import { useClickOutside, useToggle } from '@react-hooks-library/core'
-import { map } from 'lodash-es'
+import { map, isEmpty } from 'lodash-es'
 import { useRef } from 'react'
 import { FaList } from 'react-icons/fa6'
 import { MdTitle } from 'react-icons/md'
@@ -27,6 +27,7 @@ const Dropdown = (props) => {
         onClick={toggle}
         className={`
           dropdown dropdown-top ${isSectionVisible ? 'dropdown-open' : ''}
+          ${isEmpty(sections) ? 'disabled pointer-events-none' : ''}
         `}
       >
         <FaList />
