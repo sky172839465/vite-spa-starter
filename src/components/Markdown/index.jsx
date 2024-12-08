@@ -60,7 +60,6 @@ const Markdown = (props) => {
         {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
         <article ref={articleRef} className='markdown-body !bg-slate-100 dark:!bg-slate-800 [&_a[href^="#"]]:text-inherit'>
           <div
-            className='p-4'
             dangerouslySetInnerHTML={{ __html }}
           />
         </article>

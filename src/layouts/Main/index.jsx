@@ -17,7 +17,7 @@ const MainLayout = (props) => {
           {pathname}
         </p>
       </div>
-      <div className='h-full w-dvw grow overflow-y-auto overflow-x-hidden'>
+      <div className='h-full w-dvw grow overflow-y-auto overflow-x-hidden p-4'>
         {children}
       </div>
     </div>
