@@ -19,6 +19,10 @@ const Dropdown = (props) => {
   }
 
   useClickOutside(sectionDropdownRef, setFalse)
+  
+  if (isEmpty(sections)) {
+    return null
+  }
 
   return (
     <li>
@@ -27,7 +31,6 @@ const Dropdown = (props) => {
         onClick={toggle}
         className={`
           dropdown dropdown-top ${isSectionVisible ? 'dropdown-open' : ''}
-          ${isEmpty(sections) ? 'disabled pointer-events-none' : ''}
         `}
       >
         <FaList />
