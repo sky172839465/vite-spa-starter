@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# runtime generate data folder
+src/data/*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
