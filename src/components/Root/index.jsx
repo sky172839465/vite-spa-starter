@@ -1,5 +1,6 @@
 import { get } from 'lodash-es'
 import { useRef } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import toast, { Toaster } from 'react-hot-toast'
 import { Outlet } from 'react-router-dom'
 import { SWRConfig } from 'swr'
@@ -38,7 +39,9 @@ const Root = () => {
           onSuccess
         }}
       >
-        <Outlet />
+        <HelmetProvider>
+          <Outlet />
+        </HelmetProvider>
       </SWRConfig>
       <Toaster />
       <CustomSwipe />

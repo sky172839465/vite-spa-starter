@@ -2,6 +2,7 @@ import 'github-markdown-css/github-markdown.css'
 
 import { flow, map } from 'lodash-es'
 import { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import useSWR from 'swr'
 
 import BottomActions from '../BottomActions'
@@ -42,6 +43,19 @@ const Markdown = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          {title}
+        </title>
+        <meta name='description' content={description} />
+        <meta property='og:type' content='article' />
+        <meta property='og:url' content={shareData.url} />
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={description} />
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@sky172839465' />
+        <meta name='twitter:creator' content='@sky172839465' />
+      </Helmet>
       <div className='space-y-2'>
         <div className='flex flex-row items-center justify-between'>
           <h2 ref={topRef} className='text-xl'>
