@@ -6,5 +6,6 @@
   "tailwindCSS.emmetCompletions": true,
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "editor.autoClosingDelete": "always"
 }
