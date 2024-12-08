@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react'
 import {
-  Await,
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
@@ -16,7 +15,6 @@ const LazyMarkdown = lazy(() => import('../Markdown/index.jsx'))
 const withErrorElement = (routes) => routes.map((item) => {
   const {
     element: Comp,
-    markdown,
     isMarkdown,
     layout: Layout = LazyLayout,
     ...route
@@ -31,9 +29,7 @@ const withErrorElement = (routes) => routes.map((item) => {
       >
         <Layout>
           {isMarkdown && (
-            <Await resolve={markdown}>
-              <LazyMarkdown {...item} />
-            </Await>
+            <LazyMarkdown {...item} />
           )}
           {!isMarkdown && (
             <Comp />

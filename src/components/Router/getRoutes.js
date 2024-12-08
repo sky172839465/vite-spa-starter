@@ -107,7 +107,7 @@ const getRoutes = (pages, loaders, layouts, posts, isRoot = false) => {
       const isMarkdown = originPath.endsWith('.md')
       collect.push({
         isMarkdown,
-        markdown: isMarkdown ? page() : undefined,
+        markdown: isMarkdown ? page : undefined,
         filePath: originPath,
         path: isIndex ? '/' : `${normalizedPathName}/`,
         element: isMarkdown ? undefined : lazy(page),

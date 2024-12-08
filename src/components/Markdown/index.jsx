@@ -6,19 +6,20 @@ import { useEffect, useRef, useState } from 'react'
 import { FaList, FaShare } from 'react-icons/fa6'
 import { GoMoveToTop } from 'react-icons/go'
 import { MdTitle } from 'react-icons/md'
-import { useAsyncValue } from 'react-router-dom'
+import useSWR from 'swr'
 
 import BottomActions from '../BottomActions'
 
 const Markdown = (props) => {
-  const { filePath } = props
+  const { filePath, markdown } = props
   const articleRef = useRef()
   const topRef = useRef()
   const sectionDropdownRef = useRef()
   const { bool: isSectionVisible, toggle, setFalse } = useToggle(false)
   const [sections, setSections] = useState([])
-  const { html: __html, attributes } = useAsyncValue()
   const isShareSupported = useIsSupported(() => !!navigator?.share)
+  const { data } = useSWR(filePath, markdown, { suspense: true })
+  const { html: __html, attributes } = data
   const { title, description } = attributes
   // console.log(props, attributes)
 
