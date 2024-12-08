@@ -40,8 +40,8 @@ const Dropdown = (props) => {
         <ul
           className={`
             menu dropdown-content
-            !fixed !bottom-24 left-2 m-0 w-[calc(100dvw-1rem)] rounded-box bg-black
-            p-2 text-white shadow md:w-auto
+            !fixed !bottom-24 left-2 m-0 w-[calc(100dvw-1rem)] rounded-box bg-black p-2
+            text-white shadow md:left-[25dvw] md:w-[50dvw]
             dark:bg-slate-700 [&_a]:whitespace-nowrap
           `}
         >
