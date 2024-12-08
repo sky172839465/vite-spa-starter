@@ -1,5 +1,5 @@
 import { FaRoadCircleXmark } from 'react-icons/fa6'
-import { Link,useRouteError } from 'react-router-dom'
+import { Link, useRouteError } from 'react-router-dom'
 
 const ErrorElement = () => {
   const error = useRouteError() || {}
@@ -10,7 +10,7 @@ const ErrorElement = () => {
   console.error(error)
 
   return (
-    <div className='hero min-h-screen w-full bg-base-200'>
+    <div className='hero h-dvh w-full'>
       <div className='hero-content text-center'>
         <div className='max-w-md'>
           <h1 className='text-5xl font-bold'>

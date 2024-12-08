@@ -50,6 +50,7 @@ const Router = (props) => {
     {
       element: <Root />,
       loader,
+      errorElement: <ErrorElement />,
       children: [
         ...withErrorElement(routes),
         {
@@ -57,13 +58,13 @@ const Router = (props) => {
           element: SkeletonHome
         },
         {
-          path: '/*',
-          element: ErrorElement
+          path: '*',
+          element: <ErrorElement />
         }
       ]
     }
   ]
-  // console.log(totalRoutes, appBaseName)
+  console.log(totalRoutes, appBaseName)
   const router = createBrowserRouter(totalRoutes, { basename: appBaseName })
   return (
     <RouterProvider
