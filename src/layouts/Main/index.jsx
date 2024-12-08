@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 
-const Layout = (props) => {
+const MainLayout = (props) => {
   const { children } = props
   const { pathname } = useLocation()
   return (
@@ -24,4 +24,4 @@ const Layout = (props) => {
   )
 }
 
-export default Layout
+export default MainLayout

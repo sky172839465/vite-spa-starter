@@ -9,14 +9,15 @@ import SkeletonHome from '../SkeletonHome/index.jsx'
 import ErrorElement from './ErrorElement.jsx'
 import loader from './index.loader'
 
-const LazyLayout = lazy(() => import('./Layout.jsx'))
 const LazyMarkdown = lazy(() => import('../Markdown/index.jsx'))
+
+const DefaultLayout = (props) => props.children
 
 const withErrorElement = (routes) => routes.map((item) => {
   const {
     element: Comp,
     isMarkdown,
-    layout: Layout = LazyLayout,
+    layout: Layout = DefaultLayout,
     ...route
   } = item
   return {
