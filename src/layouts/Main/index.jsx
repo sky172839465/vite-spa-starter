@@ -4,8 +4,8 @@ const MainLayout = (props) => {
   const { children } = props
   const { pathname } = useLocation()
   return (
-    <>
-      <div className='navbar bg-base-100'>
+    <div className='flex flex-col h-dvh'>
+      <div className='navbar bg-slate-200 dark:bg-slate-900 shadow-sm shadow-slate-300 dark:shadow-black sticky top-0'>
         <Link
           className='btn btn-ghost text-xl'
           to='/'
@@ -13,14 +13,14 @@ const MainLayout = (props) => {
         >
           Home
         </Link>
-        <p className='px-2'>
+        <p className='px-2 text-lg'>
           {pathname}
         </p>
       </div>
-      <div className='h-[calc(100dvh-4rem)] w-full max-w-full p-2'>
+      <div className='flex-grow h-full w-dvw overflow-y-auto overflow-x-hidden'>
         {children}
       </div>
-    </>
+    </div>
   )
 }
 

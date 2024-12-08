@@ -1,4 +1,4 @@
-import Layout from '../../components/Router/Layout'
+import Layout from '../../layouts/Main/index'
 
 const DemoLayout = (props) => {
   const { children } = props
