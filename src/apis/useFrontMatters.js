@@ -3,7 +3,7 @@ import useSWR from 'swr'
 
 export const fetcher = async (query) => {
   const data = (await import('../data/frontMatters.json')).default
-  return filter(data, item => item.data.title.includes(query.title))
+  return filter(data, item => JSON.stringify(item).includes(query.title))
 }
 
 export const useFrontMatters = (query = {}, options = {}) => {
