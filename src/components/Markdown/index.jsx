@@ -72,7 +72,7 @@ const Markdown = (props) => {
           </h2>
           <div>
             <a
-              href={`https://github.com/sky172839465/vite-spa-starter/edit/main/src/${filePath.replace('./', '')}`}
+              href={`https://github.com/sky172839465/vite-spa-starter/blob/main/src/${filePath.replace('./', '')}`}
               target='_blank'
               className='btn btn-primary'
             >
