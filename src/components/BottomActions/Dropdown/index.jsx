@@ -53,7 +53,7 @@ const Dropdown = (props) => {
                   <a
                     data-hash={section.hash}
                     onClick={scrollToSection}
-                    className='block w-[82dvw] truncate md:w-[50dvw]'
+                    className='block w-[82dvw] truncate md:w-[44dvw]'
                   >
                     {section.label}
                   </a>
